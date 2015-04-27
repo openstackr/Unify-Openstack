@@ -1,0 +1,16 @@
+openstack:
+  mysql:
+    user: root
+    password: root
+    dbhost: db.yourdomain.com
+    allow_host: '"%"'
+    privileges: ALL PRIVILEGES
+
+  token:
+    conn_token: admin
+
+
+  keystone:
+    name: keystone
+    password: keystone_pass
+    host: controller ##In Case of Seperate Controller for keystone##
