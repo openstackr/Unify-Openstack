@@ -10,7 +10,7 @@ include:
      - enable: True
      - reload: True
      - require: 
-       - pkg: openstack-compute
+       - pkg: nova_compute
 
 {% endfor %}
 

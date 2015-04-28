@@ -1,4 +1,4 @@
-{% from "keystone/files/map.jinja" import keystone  with context %}
+{% from "keystone/files/map.jinja" import keystone,controller_ip  with context %}
 
 Keystone_tenants:
   keystone.tenant_present:
@@ -16,8 +16,8 @@ Keystone_roles:
 
 Keystone_user:
   keystone.user_present:
-    - name: admin
-    - password: admin
+    - name: {{ keystone.name }}
+    - password: {{ keystone.password }}
     - email: admin@test.com
     - roles:
         admin:
@@ -41,7 +41,7 @@ Keystone_service:
 Keystone_endpoint:
   keystone.endpoint_present:
     - name: keystone
-    - publicurl: http://controller:5000/v2.0  
-    - internalurl: http://controller:5000/v2.0
-    - adminurl: http://controller:35357/v2.0
-    - connection_token: {{ keystone.conn_token }} 
+    - publicurl: http://{{ controller_ip[0]|join(' ') }}:5000/v2.0  
+    - internalurl: http://{{ controller_ip[0]|join(' ') }}:5000/v2.0
+    - adminurl: http://{{ controller_ip[0]|join(' ') }}:35357/v2.0
+    - connection_token: {{ keystone.conn_token }}

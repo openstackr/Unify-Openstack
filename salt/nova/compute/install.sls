@@ -1,7 +1,7 @@
 include:
   - repo.install
 
-openstack-compute:
+nova_compute:
   pkg.installed:
     - update: True
     - pkgs:

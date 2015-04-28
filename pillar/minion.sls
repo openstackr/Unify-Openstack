@@ -7,16 +7,19 @@ openstack-instance:
     openstack-id: devcloud
     minions:
       controller:
+        function: controller
         role: mysql
         mysql-cluster-id: mysql-cluster1
         mysql-is-master: true
 
       compute:
+        function: compute
         role: mysql
         mysql-cluster-id: mysql-cluster1
         mysql-is-master: false
 
       network:
+        function: network
         haproxy: mysql 
 
     openstack-components:
@@ -28,6 +31,7 @@ openstack-instance:
       mysql:
         conn_user: root
         conn_password: mysql
+        conn_host: '172.25.204.94'
     
       rabbitmq:
         rabbitmq_username: rabbitmq
@@ -44,4 +48,12 @@ openstack-instance:
           glance_host: controller
           virt_type: kvm 
 
+      neutron:
+        name: neutron
+        password: neutron_pass
 
+      cinder:
+        name: cinder
+        password: cinder_pass
+
+ 

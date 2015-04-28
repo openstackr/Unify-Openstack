@@ -32,3 +32,8 @@
     },
 }, ) %}
 
+{% set controller_ip = [] %}
+  {%- for key, value in salt['mine.get']('G@openstack-id:' + grains['openstack-id'] + ' and G@function:controller','network.ip_addrs','compound').items() -%}
+    {% do controller_ip.append(value) %}
+  {%- endfor -%}
+

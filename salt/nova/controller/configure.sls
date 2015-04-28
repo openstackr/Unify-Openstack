@@ -1,6 +1,6 @@
 include :
   - .database
-  - .keystone_user
+  - .nova_user
   - .install 
 
 

@@ -9,7 +9,7 @@ nova_conf:
     - source: salt://nova/compute/files/nova.conf
     - template: jinja
     - require:
-      -  pkg: openstack-compute
+      -  pkg: nova_compute
 
 
 
