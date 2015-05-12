@@ -1,5 +1,5 @@
 {% from "keystone/files/map.jinja" import keystone  with context %}
-{% from "cinder/controller/files/map.jinja" import cinder_controller,controller_ip  with context %}
+{% from "cinder/controller/files/map.jinja" import cinder_controller  with context %}
 
 
 cinder_user:
@@ -26,8 +26,8 @@ cinder_service:
 cinder_endpoint:
   keystone.endpoint_present:
     - name: cinder
-    - internalurl: http://{{ controller_ip[0]|join(' ') }}:8776/v1/%(tenant_id)s
-    - publicurl: http://{{ controller_ip[0]|join(' ') }}:8776/v1/%(tenant_id)s
-    - adminurl: http://{{ controller_ip[0]|join(' ') }}:8776/v1/%(tenant_id)s
+    - internalurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][1] }}:8776/v1/%(tenant_id)s
+    - publicurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][1] }}:8776/v1/%(tenant_id)s
+    - adminurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][1] }}:8776/v1/%(tenant_id)s
     - region: regionone
     - connection_token: {{ keystone.conn_token }} 

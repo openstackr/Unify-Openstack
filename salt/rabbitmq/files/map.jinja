@@ -1,14 +1,12 @@
 
 {% set rabbitmq = salt['grains.filter_by']({
    'RedHat': {
-        'rabbitmq_username': 'rabbitmq',
-        'rabbitmq_host': 'controller',
+        'rabbitmq_name': 'rabbitmq',
         'rabbitmq_password': 'password',
         'rpc_backend': 'rabbit',
     },
     'Debian': {
-        'rabbitmq_username': 'rabbitmq',
-        'rabbitmq_host': 'controller',
+        'rabbitmq_name': 'rabbitmq',
         'rabbitmq_password': 'password',
         'rpc_backen': 'rabbit',
     },

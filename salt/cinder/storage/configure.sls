@@ -9,3 +9,6 @@ cinder_storage_config_file:
     - mode: 644
     - source: salt://cinder/storage/files/storage_cinder.conf
     - template: jinja
+
+include:
+  - .volume_create

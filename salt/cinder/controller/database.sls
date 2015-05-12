@@ -8,7 +8,7 @@ mysql_python_pkg:
 cinder_db:
   mysql_database.present:
     - name: {{ cinder_controller.name }}
-    - connection_host: {{ mysql.conn_host }}
+    - connection_host: {{ salt['publish.publish']('haproxy:*','grains.get','ipv4','grain').values()[0][1] }}
     - connection_user: {{ mysql.conn_user }}
     - connection_pass: {{ mysql.conn_password }}
 
@@ -18,7 +18,7 @@ cinder_{{ host_list }}:
     - name: {{ cinder_controller.name }}
     - password: {{ cinder_controller.password }}
     - host: {{ host_list }}
-    - connection_host: {{ mysql.conn_host }}
+    - connection_host: {{ salt['publish.publish']('haproxy:*','grains.get','ipv4','grain').values()[0][1] }}
     - connection_user: {{ mysql.conn_user }}
     - connection_pass: {{ mysql.conn_password }}
 
@@ -27,7 +27,7 @@ cinder_{{ host_list }}:
     - grant: {{ mysql.privileges }}
     - database: '*.*'
     - user: {{ cinder_controller.name }} 
-    - connection_host: {{ mysql.conn_host }}
+    - connection_host: {{ salt['publish.publish']('haproxy:*','grains.get','ipv4','grain').values()[0][1] }}
     - connection_user: {{ mysql.conn_user }}
     - connection_pass: {{ mysql.conn_password }}
 

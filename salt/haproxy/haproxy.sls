@@ -11,6 +11,10 @@ haproxy_conf:
     - require:
       - pkg: haproxy
 
+haproxy_enable:
+  service.running:
+    - name: haproxy
+    - enable: True
 
 haproxy_start:
   cmd:

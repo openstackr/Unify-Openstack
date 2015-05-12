@@ -7,3 +7,4 @@ neutron_controller:
         - neutron.controller.install
         - neutron.controller.configure
         - neutron.controller.neutron_user
+        - neutron.controller.start

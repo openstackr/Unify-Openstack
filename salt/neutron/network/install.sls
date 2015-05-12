@@ -8,6 +8,7 @@ neutron_network_install:
       - openstack-neutron
       - openstack-neutron-ml2
       - openstack-neutron-openvswitch
+      - net-tools
     - require:
       - pkg: juno_release   
 

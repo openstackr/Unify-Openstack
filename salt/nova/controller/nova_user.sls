@@ -1,4 +1,4 @@
-{% from "nova/controller/files/map.jinja" import nova_controller,controller_ip with context %}
+{% from "nova/controller/files/map.jinja" import nova_controller with context %}
 {% from "keystone/files/map.jinja" import keystone with context %}
 
 keystone_user:
@@ -25,9 +25,9 @@ keystone_service:
 keystone_endpoint:
   keystone.endpoint_present:
     - name: {{ nova_controller.name }}
-    - publicurl: http://{{ controller_ip[0]|join(' ') }}:8774/v2/%(tenant_id)s  
-    - internalurl: http://{{ controller_ip[0]|join(' ') }}:8774/v2/%(tenant_id)s 
-    - adminurl: http://{{ controller_ip[0]|join(' ') }}:8774/v2/%(tenant_id)s 
+    - publicurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:8774/v2/%(tenant_id)s  
+    - internalurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:8774/v2/%(tenant_id)s 
+    - adminurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:8774/v2/%(tenant_id)s 
     - region: regionone  
     - profile: openstack1
     - connection_token: {{ keystone.conn_token }}

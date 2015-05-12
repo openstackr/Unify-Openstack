@@ -1,4 +1,4 @@
-{% from "keystone/files/map.jinja" import keystone,controller_ip  with context %}
+{% from "keystone/files/map.jinja" import keystone  with context %}
 
 Keystone_tenants:
   keystone.tenant_present:
@@ -41,7 +41,8 @@ Keystone_service:
 Keystone_endpoint:
   keystone.endpoint_present:
     - name: keystone
-    - publicurl: http://{{ controller_ip[0]|join(' ') }}:5000/v2.0  
-    - internalurl: http://{{ controller_ip[0]|join(' ') }}:5000/v2.0
-    - adminurl: http://{{ controller_ip[0]|join(' ') }}:35357/v2.0
+    - publicurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:5000/v2.0  
+    - internalurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:5000/v2.0
+    - adminurl: http://{{ salt['publish.publish']('function:controller','grains.get','ipv4','grain').values()[0][0] }}:35357/v2.0
+    - region: regionone
     - connection_token: {{ keystone.conn_token }}

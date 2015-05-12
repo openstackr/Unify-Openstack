@@ -11,6 +11,7 @@ include:
      - reload: True
      - require: 
        - pkg: nova_compute
-
+     - watch:
+       - pkg: nova_compute 
 {% endfor %}
 

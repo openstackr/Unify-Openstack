@@ -1,6 +1,5 @@
 {% set nova_compute =  salt['grains.filter_by']({
     'RedHat': {
-        'my_ip': 'localhost',
         'vnc_enabled':'True',
         'vncserver_listen': '0.0.0.0',
         'vncserver_proxyclient_address': 'localhost',
@@ -9,7 +8,6 @@
         'virt_type': 'kvm' 
     },
     'Debian': {
-        'my_ip': 'localhost',
         'vnc_enabled':'True',
         'vncserver_listen': '0.0.0.0',
         'vncserver_proxyclient_address': 'localhost',
@@ -31,9 +29,3 @@
          'novacompute': 'openstack-nova-compute',
     },
 }, ) %}
-
-{% set controller_ip = [] %}
-  {%- for key, value in salt['mine.get']('G@openstack-id:' + grains['openstack-id'] + ' and G@function:controller','network.ip_addrs','compound').items() -%}
-    {% do controller_ip.append(value) %}
-  {%- endfor -%}
-

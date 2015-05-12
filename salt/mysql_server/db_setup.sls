@@ -27,4 +27,5 @@ root_newuser:
     - connection_pass: {{ mysql.root_password }} 
   require:
     - pkg: MySQL-python 
+
 {% endif %}

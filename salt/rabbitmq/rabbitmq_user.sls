@@ -4,9 +4,8 @@
 
 rabbit_user:
     rabbitmq_user.present:
-        - name: {{ rabbitmq.rabbitmq_username }} 
+        - name: {{ rabbitmq.rabbitmq_name }} 
         - password: {{ rabbitmq.rabbitmq_password }} 
-        - force: True
         - perms:
           - '/':
             - '.*'

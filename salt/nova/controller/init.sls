@@ -1,6 +1,6 @@
 nova_controller_setup:
   salt.state:
-    - tgt: 'id:controller'
+    - tgt: 'function:controller'
     - tgt_type: grain
     - sls:
         - nova.controller.install
